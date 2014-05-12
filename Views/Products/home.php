@@ -2,7 +2,6 @@
 	.categories {
 		margin-bottom: 10px;
 	}
-	
 	#shopping-cart-list {
 		position: fixed;
 		right: 	0px;
@@ -17,34 +16,21 @@
 		transition: right .5s;
 		-webkit-transition: right .5s;
 	}
-	
 	.closed#shopping-cart-list {
 		right: -180px;
 	}
-	
 	#shopping-cart-list .scrolling {
 		overflow-y: scroll;
 		height: 95%;
 		border-bottom: 1px solid black;
 	}
-	
 	#shopping-cart-list img {
 		float: left;
 		width: 30px;
 		height: 30px;
 	}
-	
-	.label-danger{ 
-		background-color: maroon; 
-	}
+	.label-danger{ background-color: maroon; }
 </style>
-
-	<? if(isset($_REQUEST['sub_action'])): ?>
-		<div class="alert alert-success alert-dismissable">
-			<a class="close">&times;</a>
-			The row has been <?=$_REQUEST['sub_action']?> successfully!
-		</div>
-	<? endif; ?>
 
 	<ul class="nav nav-pills categories" data-bind="foreach: categoryList">
 	  <li data-bind="css: { active: $data == $root.currentCategory() }" >
@@ -67,7 +53,6 @@
 		</div>
 		</div>
 	</div>	
-	
 	<div id="shopping-cart-list" class="closed" >
 		<div class="scrolling"  data-bind="foreach: cart" >
 			<div class="well well-sm clearfix">
@@ -96,7 +81,7 @@
 				<span class="badge label-danger" data-bind="text: cart().length">0</span>
 				</button>			
 		</li>
-		<li><a></a></li>  <!--fixes navbar spacing -->
+		<li><a></a></li>
 	</ul>
 </script>
 
@@ -106,10 +91,6 @@
 		<script type="text/javascript">
 			$(function(){
 				$(".navbar-collapse").append($("#cart-tmpl").html())
-				
-				$(".close").click(function(){
-					$(this).closest(".alert").slideUp();
-				})
 				
 				var vm = {
 					categoryList: ko.observableArray(),
@@ -150,3 +131,4 @@
 			});
 		</script>
 	<? } ?>
+	

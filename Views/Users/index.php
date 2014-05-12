@@ -1,19 +1,19 @@
 	<?
-		$id = $_REQUEST['id'];
+		@$id = $_REQUEST['id'];
 	?>
-	<link rel="stylesheet" type="test/css" href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables.css" />
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables.min.css" />
 	<h2>
 		List of Users
 	</h2>
 	
 	<style type="text/css">
 		body table.table .highlighted td{
-			background-color: #FFFFAA;
+			background-color: #FFFFAA ; 
 		}
 	</style>
 	
 	<? if(isset($_REQUEST['sub_action'])): ?>
-		<div class="alert alert-success alert-dismissable">
+		<div class="alert alert-success">
 			<a class="close">&times;</a>
 			The row has been <?=$_REQUEST['sub_action']?> successfully!
 		</div>
@@ -29,10 +29,11 @@
 				<th>Password</th>
 				<th>fbid</th>
 				<th>UserType</th>
-				<th>Edit</th>
+				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>
+			
 			
 			<? foreach ($model as $row): ?>
 				<tr class="<?=$id==$row['id'] ? "highlighted" : "" ?>">
@@ -44,8 +45,8 @@
 					<td>
 						<div class="btn-group">
 							<a class="btn btn-sm btn-default glyphicon glyphicon-edit" title="Edit" href="?action=edit&id=<?=$row['id']?>"></a>
-							<a class="btn btn-sm btn-default glyphicon glyphicon-eye-open" title="Details" href="?action=details&id=<?=$row['id']?>"></a>
-							<a <?= Accounts::IsAdmin() ? '' : 'disabled' ?>class="btn btn-sm btn-default glyphicon glyphicon-trash" title="Delete" href="?action=delete&format=json&id=<?=$row['id']?>"></a>
+							<a class="btn btn-sm btn-default glyphicon glyphicon-eye-open" title="Details" href="?action=edit&id=<?=$row['id']?>"></a>
+							<a <?=Accounts::IsAdmin() ? '' : 'disabled' ?> class="btn btn-sm btn-default glyphicon glyphicon-trash" title="Delete" href="?action=delete&format=json&id=<?=$row['id']?>"></a>
 						</div>
 					</td>
 				</tr>
@@ -72,7 +73,8 @@
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	
-	<? function Javascripts() { ?>
+	
+	<? function JavaScripts(){ ?>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 		<script type="text/javascript">
@@ -87,9 +89,9 @@
 				$(".glyphicon-trash").click(function(event){
 					var that = this;
 					event.preventDefault();
-					$.get(this.href, function(data){
+					$.get(that.href, function(results){
 						
-						if(confirm("Are you sure that you want to delete " + data.data.FirstName + " " + data.data.LastName + "?")){
+						if(confirm("Are you sure that you want to delete " + results.data.FirstName + " " + results.data.LastName + "?")){
 							$.post(that.href, function(data){
 								if(data.success){
 									//msg user success
@@ -97,13 +99,13 @@
 									alert('Deleted Successfuly');
 									$(that).closest('tr').remove();
 								}else{
-									//msg user error	
+									//smg user error
 									alert(JSON.stringify(data.errors));
 								}
 							}, 'json');
 						}
 						
-					}, 'json')
+					},'json')
 				});
 				
 				$(".glyphicon-edit, .cmd-new").click(function(event){
@@ -114,10 +116,24 @@
 						var $myModal = $("#myModal");
 						$(".modal-content", $myModal).html(data);
 						$myModal.modal('show');
-						
 					})
-				})
-				
+					
+				});
 			})
 		</script>
 	<? } ?>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
