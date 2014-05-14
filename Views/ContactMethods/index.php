@@ -6,15 +6,16 @@
     	}
     </style>
     
-    <p class="main">This is the Suppliers Section of my eCommerce project.</p>
-	<h2>
-		List of Suppliers
+    <p class="main">This is the Contact Method Section of my eCommerce project.
+    	
+		List of Contact Methods
 	</h2>
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>id</th>
-				<th>Name</th>
+				<th>Value</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -22,7 +23,8 @@
 			<? foreach ($model as $row): ?>
 				<tr>
 					<td><?=$row['id']?></td>
-					<td><?=$row['Name']?></td>
+					<td><?=$row['Value']?></td>
+				
 				</tr>
 			<? endforeach; ?>
 			

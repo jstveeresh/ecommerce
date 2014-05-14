@@ -1,14 +1,14 @@
 <?php
 	include_once __DIR__ . '/../inc/functions.php';
 	
-	class Orders {
+	class ContactMethods  {
 		
 		static public function Get($id = null)
 		{
 			if($id == null){
 				//	Get all records
 				
-				return fetch_all("SELECT * FROM 2014Spring_Orders");
+				return fetch_all("SELECT * FROM 2014Spring_ContactMethods");
 			}else{
 				// Get on record
 			}
