@@ -24,7 +24,7 @@
 
 	@media screen and (min-width: 768px) {
 		.my-horizontal .form-control{
-			width: 35%;
+			width: 25%;
 		}
 	}
 </style>
@@ -47,17 +47,8 @@
 	<input type="hidden" name="id" value="<?=$model['id']?>" />
 	
 	<div class="form-group <?if(isset($errors['User_id'])) echo 'has-error has-feedback' ?> ">
-		<label class="control-label" for="User_id">User:</label>
-		
-		<select size="1" class="required form-control" name="User_id" id="User_id">
-			<option value="">--User--</option>
-			<? foreach (Orders::GetUsers() as $row): ?>
-				<option value="<?=$row['id']?>" <?if($model['User_id']==$row['id']) echo 'selected=true'?>>
-					<?=$row['LastName']?>, <?=$row['FirstName']?>
-				</option>
-			<? endforeach; ?>
-		</select>
-
+		<label class="control-label" for="User_id">User Id:</label>
+		<input class="required form-control" type="text" name="User_id" id="User_id" value="<?=$model['User_id']?>" placeholder="User_id" />
 		<? if(isset($errors['User_id'])): ?>
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 			<span ><?=$errors['User_id']?></span>
@@ -65,17 +56,8 @@
 	</div>
 	
 	<div class="form-group <?if(isset($errors['Address_id'])) echo 'has-error has-feedback' ?> ">
-		<label class="control-label" for="Address_id">Address:</label>
-		
-		<select size="1" class="required form-control" name="Address_id" id="Address_id">
-			<option value="">--Addresses--</option>
-			<? foreach (Orders::GetAddresses() as $row): ?>
-				<option value="<?=$row['id']?>" <?if($model['Address_id']==$row['id']) echo 'selected=true'?>>
-					<?=$row['Addresses']?>
-				</option>
-			<? endforeach; ?>
-		</select>
-		
+		<label class="control-label" for="Address_id">Address Id:</label>
+		<input class="required form-control" type="text" name="Address_id" id="Address_id" value="<?=$model['Address_id']?>" placeholder="Address_id" />
 		<? if(isset($errors['Address_id'])): ?>
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 			<span ><?=$errors['Address_id']?></span>

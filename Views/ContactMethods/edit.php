@@ -74,17 +74,8 @@
 	</div>
 	
 	<div class="form-group <?if(isset($errors['User_id'])) echo 'has-error has-feedback' ?> ">
-		<label class="control-label" for="User_id">User:</label>
-		
-		<select size="1" class="required form-control" name="User_id" id="User_id">
-			<option value="">--User--</option>
-			<? foreach (Contacts::GetUsers() as $row): ?>
-				<option value="<?=$row['id']?>" <?if($model['User_id']==$row['id']) echo 'selected=true'?>>
-					<?=$row['LastName']?>, <?=$row['FirstName']?>
-				</option>
-			<? endforeach; ?>
-		</select>
-
+		<label class="control-label" for="User_id">(What to do here?) User_id:</label>
+		<input class="required form-control" type="text" name="User_id" id="User_id" value="<?=$model['User_id']?>" placeholder="User_id" />
 		<? if(isset($errors['User_id'])): ?>
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 			<span ><?=$errors['User_id']?></span>
