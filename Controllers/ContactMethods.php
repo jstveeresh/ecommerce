@@ -1,4 +1,5 @@
 <?php
+
 	include_once __DIR__ . '/../inc/functions.php';
 	include_once __DIR__ . '/../inc/allModels.php';
 	
@@ -11,13 +12,13 @@
 			$view = 'edit';
 			break;
 		case 'edit':
-			$model = Contacts::Get($_REQUEST['id']);
+			$model = ContactMethods::Get($_REQUEST['id']);
 			break;
 		case 'save':
 			$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
-			$errors = Contacts::Validate($_REQUEST);
+			$errors = ContactMethods::Validate($_REQUEST);
 			if(!$errors){
-				$errors = Contacts::Save($_REQUEST);
+				$errors = ContactMethods::Save($_REQUEST);
 			}
 			if(!$errors){
 				header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
@@ -31,13 +32,13 @@
 		case 'delete':
 			if($_SERVER['REQUEST_METHOD'] == 'GET'){
 				//prompt
-				$model = Contacts::Get($_REQUEST['id']);
+				$model = ContactMethods::Get($_REQUEST['id']);
 			} else{
-				$errors = Contacts::Delete($_REQUEST['id']);
+				$errors = ContactMethods::Delete($_REQUEST['id']);
 			}
 			break;
 		default:
-			$model = Contacts::Get();
+			$model = ContactMethods::Get();
 			if($view == null) $view = 'index';
 	}
 	
@@ -47,10 +48,10 @@
 			echo json_encode($ret);
 			break;
 		case 'plain':
-			include __DIR__ . "/../Views/Contacts/$view.php";
+			include __DIR__ . "/../Views/ContactMethods/$view.php";
 			break;
 		default:
-			$view = __DIR__ . "/../Views/Contacts/$view.php";
+			$view = __DIR__ . "/../Views/ContactMethods/$view.php";
 			include __DIR__ . "/../Views/Shared/_Layout.php";;
 			break;
 	}
