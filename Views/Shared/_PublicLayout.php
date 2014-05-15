@@ -18,7 +18,7 @@
 
 	<header class="jumbotron">
 		<div class="container">
-			<h1 class= GVR's Online Store</h1>		
+			<h1 class="glyphicon glyphicon-tower"> GVR's Online Store</h1>		
 		</div>
 	</header>
 
