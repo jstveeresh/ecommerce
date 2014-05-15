@@ -12,10 +12,9 @@ class Accounts {
 				From 2014Spring_Users U Join 2014Spring_ContactMethods CM on U.id=CM.User_Id
 				WHERE CM.Value = '$email'";
 		$model = fetch_all($sql);
-		
+
 		if(!empty($model) && $model[0]['Password'] == $password)
 		{
-			
 			$_SESSION['User'] = $model[0];
 			return null;
 		}else{
