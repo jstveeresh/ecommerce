@@ -1,4 +1,6 @@
 <?php
+	error_reporting (E_ALL);
+	ini_set("display_errors", 1);
 	include_once __DIR__ . '/../inc/functions.php';
 	include_once __DIR__ . '/../inc/allModels.php';
 	
@@ -10,7 +12,6 @@
 	}
 	switch ($action){
 		default:	// Login
-		
 		$view = 'login';
 		$errors = array();
 		if(isset($_REQUEST['returnUrl']))
@@ -21,14 +22,12 @@
 		//print_r($_REQUEST);	
 		if(isset($_POST['email']))
 		{
-			
 			$model = $_REQUEST;
 			$errors = Accounts::DoLogin($_POST['email'], $_POST['password']);
 			
 			if(!$errors)
 			{
 				$returnUrl = !empty($_SESSION['returnUrl']) ? $_SESSION['returnUrl'] : '../Home/';
-				
 				header("Location: $returnUrl");
 				die();
 			}
